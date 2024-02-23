@@ -1,0 +1,41 @@
+.wbk-hinweis-holder {
+   max-height: 5000px;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+
+.wbk-hinweis-content {
+padding: 30px;
+}
+
+.wbk-close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    
+}
+
+
+.wbk-close-icon:hover {
+
+    transform: scale(0.9)!important;
+}
+
+
+.close-hinweis {
+    max-height: 0px !important;
+    padding: 0px !important;
+}
+
+
+.wbk-hinweis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

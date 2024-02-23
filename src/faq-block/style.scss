@@ -1,0 +1,52 @@
+.wbk-faq-title-holder {
+
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	cursor: pointer;
+	justify-content: space-between;
+
+}
+
+.wbk-faq-title-holder h1,
+.wbk-faq-title-holder h2,
+.wbk-faq-title-holder h3,
+.wbk-faq-title-holder h4,
+.wbk-faq-title-holder h5,
+.wbk-faq-title-holder h6 {
+
+	width: 90%;
+
+}
+
+
+.wbk-faq-title-holder svg {
+
+	width: 20px;
+	height: 20px;
+	transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+
+}
+
+.wbk-faq-content-holder {
+	max-height: 0px;
+	overflow: hidden;
+	transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+
+
+.active-faq svg {
+	transform: rotate(45deg);
+}
+
+
+.wbk-faq-title-holder svg rect:nth-child(1) {
+transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+transform-origin: center;
+}
+
+.active-faq svg rect:nth-child(1) {
+	transform: rotate(360deg);
+	
+}

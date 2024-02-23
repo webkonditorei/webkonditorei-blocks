@@ -1,0 +1,41 @@
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/faq-block/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+.wbk-faq-title-holder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.wbk-faq-title-holder h1,
+.wbk-faq-title-holder h2,
+.wbk-faq-title-holder h3,
+.wbk-faq-title-holder h4,
+.wbk-faq-title-holder h5,
+.wbk-faq-title-holder h6 {
+  width: 90%;
+}
+
+.wbk-faq-title-holder svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.wbk-faq-content-holder {
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.active-faq .wbk-faq-content-holder {
+  max-height: 5000px !important;
+}
+
+.active-faq svg {
+  transform: rotate(45deg);
+}
+
+/*# sourceMappingURL=index.css.map*/

@@ -1,0 +1,1 @@
+{"version":3,"file":"faq-holder/style-index.css","mappings":";;;AAAA;EACI;EACA;AACJ,C","sources":["webpack://webkonditorei-blocks/./src/faq-holder/style.scss"],"sourcesContent":[".wbk-faq-main-container {\n    width: 100%;\n    max-width: 100%;\n}"],"names":[],"sourceRoot":""}

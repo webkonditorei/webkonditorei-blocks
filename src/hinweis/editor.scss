@@ -1,0 +1,31 @@
+.wbk-hinweis-holder {
+    padding: 30px;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+
+}
+
+
+.wbk-close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+
+
+.close-hinweis {
+    max-height: 0px!important;
+    padding: 0px!important;
+}
+
+
+.wbk-hinweis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

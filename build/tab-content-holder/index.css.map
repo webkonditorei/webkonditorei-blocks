@@ -1,0 +1,1 @@
+{"version":3,"file":"tab-content-holder/index.css","mappings":";;;AAAA;EACI;EACA;EACA;EACA;AACJ,C","sources":["webpack://webkonditorei-blocks/./src/tab-content-holder/editor.scss"],"sourcesContent":[".wbk-tabs-content {\n    border: 2px solid red;\n    margin-top: 20px;\n    padding: 50px;\n    display: block;\n}"],"names":[],"sourceRoot":""}

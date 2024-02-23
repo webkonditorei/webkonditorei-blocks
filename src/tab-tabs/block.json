@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "webkonditorei-blocks/tab-tabs",
+	"parent": ["webkonditorei-blocks/tab-holder"],
+	"version": "0.1.0",
+	"title": "Tabs",
+	"category": "widgets",
+	"icon": "smiley",
+	"attributes": {
+    "tabTitle": {
+        "type": "array"
+    }
+},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "webkonditorei-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
