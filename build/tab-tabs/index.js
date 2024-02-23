@@ -100,6 +100,45 @@ function Edit({
       console.error('Error occurred while removing tab content block:', error);
     }
   };
+  const moveTabTitleItem = async (currentIndex, direction) => {
+    const newTabTitle = [...tabTitle];
+    const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+
+    // Überprüfen, ob der neue Index innerhalb des Bereichs liegt
+    if (newIndex >= 0 && newIndex < newTabTitle.length) {
+      // Tausche die Positionen der Tab-Titel
+      [newTabTitle[currentIndex], newTabTitle[newIndex]] = [newTabTitle[newIndex], newTabTitle[currentIndex]];
+      setAttributes({
+        tabTitle: newTabTitle
+      });
+      try {
+        const blocks = wp.data.select('core/block-editor').getBlocks();
+        const tabHolderBlock = blocks.find(block => block.name === 'webkonditorei-blocks/tab-holder');
+        const tabContentHolderBlock = tabHolderBlock.innerBlocks.find(innerBlock => innerBlock.name === 'webkonditorei-blocks/tab-content-holder');
+        const tabContentHolderClientId = tabContentHolderBlock.clientId;
+        const contentBlocks = tabContentHolderBlock.innerBlocks;
+
+        // Überprüfen, ob die Anzahl der Inhaltsblöcke ausreichend ist
+        if (contentBlocks.length >= currentIndex + 1 && contentBlocks.length >= newIndex + 1) {
+          // Verschiebe jeden Content-Block entsprechend der neuen Reihenfolge der Tabs
+          const sourceClientId = contentBlocks[currentIndex].clientId;
+          const targetClientId = contentBlocks[newIndex].clientId;
+          const fromRootClientId = wp.data.select('core/block-editor').getBlockRootClientId(sourceClientId);
+          const toRootClientId = wp.data.select('core/block-editor').getBlockRootClientId(targetClientId);
+          const targetIndex = wp.data.select('core/block-editor').getBlockIndex(targetClientId);
+          wp.data.dispatch('core/block-editor').moveBlockToPosition(sourceClientId, fromRootClientId, toRootClientId, targetIndex);
+        }
+      } catch (error) {
+        console.error('Error occurred while moving tab content block:', error);
+      }
+    }
+  };
+  const handleMoveTabUp = index => {
+    moveTabTitleItem(index, 'up');
+  };
+  const handleMoveTabDown = index => {
+    moveTabTitleItem(index, 'down');
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!tabTitle || tabTitle.length === 0) {
       const newTabTitle = ['', '', ''];
@@ -118,6 +157,10 @@ function Edit({
   }, tabTitle && tabTitle.map((title, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: () => handleMoveTabUp(index)
+  }, "links"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: () => handleMoveTabDown(index)
+  }, "rechts"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: () => removeTabTitleItem(index)
   }, "X"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Tab Titel", "webkonditorei-blocks"),
