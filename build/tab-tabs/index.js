@@ -83,8 +83,24 @@ function Edit({
       console.error('Error occurred while adding tab content block:', error);
     }
   };
+  const removeTabTitleItem = async index => {
+    const newTabTitle = [...tabTitle];
+    newTabTitle.splice(index, 1);
+    setAttributes({
+      tabTitle: newTabTitle
+    });
+    try {
+      const blocks = wp.data.select('core/block-editor').getBlocks();
+      const contentBlocks = blocks[0].innerBlocks[1].innerBlocks;
+      if (contentBlocks.length >= index + 1) {
+        const contentBlockToRemove = contentBlocks[index];
+        wp.data.dispatch('core/block-editor').removeBlocks(contentBlockToRemove.clientId);
+      }
+    } catch (error) {
+      console.error('Error occurred while removing tab content block:', error);
+    }
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    // Initialisiere tabTitle, wenn es leer ist
     if (!tabTitle || tabTitle.length === 0) {
       const newTabTitle = ['', '', ''];
       setAttributes({
@@ -99,9 +115,11 @@ function Edit({
     label: "Tab hinzuf\xFCgen"
   }, "Tab hinzuf\xFCgen")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wbk-tabs-header"
-  }, tabTitle && tabTitle.map((title, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, tabTitle && tabTitle.map((title, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: () => removeTabTitleItem(index)
+  }, "X"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Tab Titel", "webkonditorei-blocks"),
     tagName: 'span',
     onChange: newTitle => {
